@@ -34,6 +34,7 @@ from DataStructures.Graph import digraph as G
 from DataStructures.List import array_list as al
 from DataStructures.Stack import stack as st
 from DataStructures.Graph import dfs as dfs
+from DataStructures.Graph import bfs as bfs
 
 import csv
 import time
@@ -296,8 +297,19 @@ def get_route_between_stops_bfs(analyzer, stop1, stop2):
     """
     Obtener la ruta entre dos parada usando bfs
     """
-    # TODO: Obtener la ruta entre dos parada usando bfs
-    ...
+    graph = analyzer['connections']
+    if not G.contains_vertex(graph, stop1) or not G.contains_vertex(graph, stop2):
+        return None
+
+    visited = bfs.bfs(graph, stop1)
+    path = bfs.path_to(stop2, visited)
+    if path is None:
+        return None
+
+    route = al.new_list()
+    while not st.is_empty(path):
+        al.add_last(route, st.pop(path))
+    return route
 
 def get_shortest_route_between_stops(analyzer, stop1, stop2):
     """
