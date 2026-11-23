@@ -1,7 +1,6 @@
-from DataStructures.Queue import queue
-from DataStructures.Stack import stack
 from DataStructures.Map import map_linear_probing as map
-
+from DataStructures.Queue import queue as queue
+from DataStructures.Stack import stack as stack
 
 def new_dfo_structure(g_order):
     """
