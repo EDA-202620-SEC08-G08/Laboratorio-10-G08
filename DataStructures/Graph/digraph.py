@@ -74,3 +74,52 @@ def size(my_graph):
     Retorna el numero de arcos del grafo.
     """
     return my_graph["num_edges"]
+
+def update_vertex_info(my_graph, key_u, new_info_u):
+    vertex = mp.get(my_graph["vertices"], key_u)
+    if vertex is not None:
+        V.set_value(vertex, new_info_u)
+    return my_graph
+
+
+def vertices(my_graph):
+    return mp.key_set(my_graph["vertices"])
+
+
+def degree(my_graph, key_u):
+    vertex = mp.get(my_graph["vertices"], key_u)
+    if vertex is None:
+        raise Exception("El vertice no existe")
+    return V.degree(vertex)
+
+
+def get_edge(my_graph, key_u, key_v):
+    vertex = mp.get(my_graph["vertices"], key_u)
+    if vertex is None:
+        raise Exception("El vertice no existe")
+    return V.get_edge(vertex, key_v)
+
+
+def get_vertex_information(my_graph, key_u):
+    vertex = mp.get(my_graph["vertices"], key_u)
+    if vertex is None:
+        raise Exception("El vertice no existe")
+    return V.get_value(vertex)
+
+
+def adjacents(my_graph, key_u):
+    vertex = mp.get(my_graph["vertices"], key_u)
+    if vertex is None:
+        raise Exception("El vertice no existe")
+    return mp.key_set(V.get_adjacents(vertex))
+
+
+def edges_vertex(my_graph, key_u):
+    vertex = mp.get(my_graph["vertices"], key_u)
+    if vertex is None:
+        raise Exception("El vertice no existe")
+    return mp.value_set(V.get_adjacents(vertex))
+
+
+def get_vertex(my_graph, key_u):
+    return mp.get(my_graph["vertices"], key_u)
